@@ -1,5 +1,17 @@
 # FastAPI ML Template
 
+## Install packages
+
+`pip install -r requirements.txt`
+
+or
+
+`pip install pydantic>=1.2.0,<2.0.0 fastapi uvicorn[standard]`
+
+## Run web app
+
+`uvicorn main:app --reload`
+
 ## Run Web API
 ### Local
 
