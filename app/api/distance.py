@@ -9,15 +9,6 @@ distance_router = APIRouter()
 async def distance(method: Algorithm, line1: str, line2: str) -> DistanceResponse:
     """
     Повертає відстань між двома рядками використовуючи заданий алгоритм
-
-    Parameters
-    ----------
-    method : Algorithm
-        Один із алгоритмів
-    line1 : str
-        Перша послідовність символів
-    line2 : str
-        Друга послідовність символів
     """
     algo = method.value
     fun = getattr(textdistance, algo)
