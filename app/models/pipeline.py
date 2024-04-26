@@ -1,11 +1,11 @@
-from typing import List, Any
+from typing import List, Any, Optional
 from pydantic import BaseModel, Field, StrictStr
 
 
 class Step(BaseModel):
     transformer: StrictStr = Field(..., title="transformer", description="A transformer to be applied",
                                    example="Transformer name")
-    params: dict
+    params: Optional[dict] = None
 
 
 class TransformRequest(BaseModel):
