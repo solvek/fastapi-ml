@@ -8,6 +8,8 @@ import nltk
 import re
 from collections import Counter
 from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 transform_router = APIRouter()
 
@@ -70,11 +72,26 @@ class Tokenize:
 
 class FilterStopWords:
     def __init__(self, language="english"):
-        # print("Threshold is", threshold)
         self.stop_words = set(stopwords.words(language))
 
     def transform(self, tokens):
         return [token for token in tokens if token not in self.stop_words]
+
+
+class Stemming:
+    def __init__(self):
+        self.stemmer = PorterStemmer()
+
+    def transform(self, tokens):
+        return [self.stemmer.stem(token) for token in tokens]
+
+
+class WhatSentiment:
+    def __init__(self):
+        self.sia = SentimentIntensityAnalyzer()
+
+    def transform(self, text):
+        return self.sia.polarity_scores(text)
 
 
 def create_transformer(step):
