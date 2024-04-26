@@ -5,6 +5,8 @@ from app.models.pipeline import TransformRequest
 from sklearn.pipeline import make_pipeline
 import nltk
 
+import re
+
 transform_router = APIRouter()
 
 # Downloading NLTK data
@@ -25,6 +27,17 @@ class StandardizeLetters:
     @staticmethod
     def transform(s):
         return s.lower()
+
+
+class FixPunctuation:
+    """
+    Корекція пунктуації
+    """
+
+    @staticmethod
+    def transform(text):
+        return re.sub(r'[^\w\s]', '', text)
+
 
 def create_transformer(step):
     klass = globals()[step.transformer]
