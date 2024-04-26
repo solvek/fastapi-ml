@@ -29,7 +29,7 @@ class StandardizeLetters:
         return s.lower()
 
 
-class FixPunctuation:
+class RemovePunctuation:
     """
     Корекція пунктуації
     """
@@ -37,6 +37,12 @@ class FixPunctuation:
     @staticmethod
     def transform(text):
         return re.sub(r'[^\w\s]', '', text)
+
+
+class RemoveNumbers:
+    @staticmethod
+    def transform(text):
+        return re.sub(r'\d', '', text)
 
 
 def create_transformer(step):

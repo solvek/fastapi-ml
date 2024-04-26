@@ -9,5 +9,5 @@ class Step(BaseModel):
 
 
 class TransformRequest(BaseModel):
-    input: Any = Field(..., title="input", description="Input value", example="For example a text")
+    input: Any = Field(..., title="input", description="Input value", example="Inulinases are used for the production of high-fructose syrup 456 and fructooligosaccharides, and are widely utilized in food and pharmaceutical industries. In this study,")
     steps: List[Step] = Field(..., title="steps", description="List of transformers")
