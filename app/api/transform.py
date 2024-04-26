@@ -25,21 +25,20 @@ class IncrementInt:
 
     @staticmethod
     def transform(n):
-        return n+1
+        return n + 1
+
+
+def create_transformer(step):
+    klass = globals()[step.transformer]
+    return klass()
 
 
 @transform_router.post("/transform")
-async def predict(req: TransformRequest) -> Any:
+async def transform(req: TransformRequest) -> Any:
     """
     Transforms the input with the provided pipeline
     """
 
-    steps = []
-    for step in req.steps:
-        klass = globals()[step.transformer]
-        t = klass()
-        steps.append(t)
-
+    steps = map(create_transformer, req.steps)
     pipeline = make_pipeline(*steps)
-
     return pipeline.transform(req.input)
