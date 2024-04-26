@@ -3,3 +3,4 @@ fastapi
 unicorn[standard]
 textdistance
 sklearn
+nltk

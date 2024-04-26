@@ -2,31 +2,29 @@ from typing import Any
 from fastapi import APIRouter
 
 from app.models.pipeline import TransformRequest
+from sklearn.pipeline import make_pipeline
+import nltk
 
 transform_router = APIRouter()
 
-from sklearn.pipeline import make_pipeline, Pipeline
+# Downloading NLTK data
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
+nltk.download('wordnet', quiet=True)
+nltk.download('omw-1.4', quiet=True)
+nltk.download('vader_lexicon', quiet=True)
 
 
-class ParseInt:
+class StandardizeLetters:
     """
-    Тестовий трансформер, який переводить текст в число
+    Стандартизація літер, тобто переведення в нижній регістр
     """
 
     @staticmethod
     def transform(s):
-        return int(s)
-
-
-class IncrementInt:
-    """
-    Тестовий трансформер, який збільшує число на 1
-    """
-
-    @staticmethod
-    def transform(n):
-        return n + 1
-
+        return s.lower()
 
 def create_transformer(step):
     klass = globals()[step.transformer]
