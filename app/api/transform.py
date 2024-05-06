@@ -121,6 +121,8 @@ class ApplyModel:
             models[model_name] = self.model
 
     def transform(self, words):
+        # print(words)
+        # print(find_features(words))
         return self.model.classify_many(find_features(words))
 
 
