@@ -4,3 +4,6 @@ unicorn[standard]
 textdistance
 sklearn
 nltk
+gensim
+numpy
+scipy==1.10.1
