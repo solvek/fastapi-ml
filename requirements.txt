@@ -7,3 +7,4 @@ nltk
 gensim
 numpy
 scipy==1.10.1
+spacy
