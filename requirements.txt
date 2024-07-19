@@ -8,3 +8,7 @@ gensim
 numpy
 scipy==1.10.1
 spacy
+tf-keras
+tensorflow
+transformers
+decouple
